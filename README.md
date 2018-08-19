@@ -31,6 +31,3 @@ export default class TestComponent extends Vue {}
                                     }
                                 })
     - 3.- Then add the custom tag inside the component template (TestComponent tag)
-
-## Add vuetify using @vue/cli:
-Run this(cmd): vue add vuetify
