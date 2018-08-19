@@ -30,4 +30,4 @@ export default class TestComponent extends Vue {}
                                         TestComponent,
                                     }
                                 })
-    - 3.- Then add the custom tag inside the component: <TestComponent>
+    - 3.- Then add the custom tag inside the component template (TestComponent tag)
