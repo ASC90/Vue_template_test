@@ -3,7 +3,7 @@
     <v-toolbar-items>
         <v-btn color="lime darken-4" flat to="/">Home</v-btn>
         <v-btn color="lime darken-4" flat to="/about">About</v-btn>
-        <v-btn color="lime darken-4" flat to="/TestView">TestView</v-btn>
+        <v-btn color="lime darken-4" flat to="/TestView">Test View</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
