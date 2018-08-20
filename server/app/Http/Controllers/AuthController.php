@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -37,5 +39,26 @@ class AuthController extends Controller
         var_dump("euuuu");
         $test = ["hola" => "euuu"];
         return response()->json();
+    }
+
+    public function register(Request $request)
+    {
+
+        $params = $request->all();
+        $this->validate($request, [
+            'username' => 'required| unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+        ], $this->mensaje);
+
+        User::create([
+            'username' => $params["username"],
+            'email' => $params["email"],
+            'password' =>
+                Hash::make($params["password"])
+        ]);
+
+        return response()->json(["message" => "el usuario ha sido registrado"], 200);
+
     }
 }
