@@ -27,6 +27,7 @@ export default class App extends Vue {
 @import url("https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=latin-ext");
 #app {
   font-family: "Raleway", sans-serif;
+  min-height: 100vh;
 }
 .light {
   color: black;
@@ -35,6 +36,14 @@ export default class App extends Vue {
 .dark {
   color: white;
   background-color: #3a3a3a;
+}
+.lightNavbar {
+  color: black;
+  background-color: #cddc39;
+}
+.darkNavbar {
+  color: white !important;
+  background-color: #827717;
 }
 /*#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
