@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
-use Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,15 +28,13 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        var_dump($this);
+        $params = $request->only(["email", "password", "hash"]);
         $this->validate($request, [
-            'username' => 'required| unique:users',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required',
         ], $this->mensaje);
 
-        var_dump("euuuu");
-        $test = ["hola" => "euuu"];
+      // login
         return response()->json();
     }
 
