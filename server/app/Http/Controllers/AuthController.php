@@ -8,6 +8,7 @@ use Validator;
 use App\User;
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\JWTAuth;
 
 class AuthController extends Controller
 {

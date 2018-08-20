@@ -33,20 +33,25 @@ class JWTAuth
     public function checkToken($jwt)
     {
         $auth = false;
-
+        $message;
         try {
             $decoded = JWT::decode($jwt, $this->key, array('RS256'));
 
             if (is_object($decoded) && isset($decoded->id)) {
                 if ($decoded->expired >= Carbon::now()) {
                     $auth = false;
+                    $message = "autorizacion caducada";
                 } else {
                     $auth = true;
+                    $message = "autorizacion aceptada";
                 }
             }
         } catch (Exception $e) {
             $auth = false;
+            $message = "no autorizado";
         }
+
+        return ["auth" => $auth, "message" => "message"];
 
     }
 }
