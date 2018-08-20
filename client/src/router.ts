@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import TestView from '@/views/TestView.vue';
+import SignInRegister from '@/views/SignInRegister.vue';
 
 Vue.use(Router);
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/TestView',
       name: 'TestView',
       component: TestView,
+    },
+    {
+      path: '/SignInRegister',
+      name: 'SignInRegister',
+      component: SignInRegister,
     },
     {
       path: '/about',

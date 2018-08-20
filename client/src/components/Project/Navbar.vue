@@ -1,9 +1,15 @@
 <template>
- <v-toolbar color="lime">
-    <v-toolbar-items>
+	<v-toolbar color="lime">
+		<v-toolbar-items>
         <v-btn color="lime darken-4" flat to="/">Home</v-btn>
         <v-btn color="lime darken-4" flat to="/about">About</v-btn>
         <v-btn color="lime darken-4" flat to="/TestView">Test View</v-btn>
+    </v-toolbar-items>
+    <v-spacer></v-spacer>
+    <v-toolbar-items>
+		<v-btn flat v-if="isLight" @click="toggleTheme()"><v-icon color="light-green darken-3">wb_sunny</v-icon></v-btn>
+		<v-btn flat v-if="!isLight" @click="toggleTheme()"><v-icon color="white">star</v-icon></v-btn>
+        <v-btn color="lime darken-4" flat to="/SignInRegister"><v-icon style="padding-right: 6px;">perm_identity</v-icon>Sign in/Register</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -12,11 +18,17 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class Navbar extends Vue {}
+export default class Navbar extends Vue {
+  isLight = true;
+  toggleTheme() {
+    this.isLight = !this.isLight;
+    this.$emit("themeControl");
+  }
+}
 </script>
 
 <style scoped>
-    /*  
+/*  
     .router-link.router-link-exact-active.router-link-active {
         box-shadow: none;
     }
@@ -32,7 +44,7 @@ export default class Navbar extends Vue {}
         background-color: aquamarine;
     }
     */
-    .v-btn--router {
-        color: black;
-    }
+.v-btn--router {
+  color: black;
+}
 </style>
