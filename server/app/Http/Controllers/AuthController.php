@@ -44,7 +44,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
 
-        $params = $request->all();
+        $params = $request->only(["username", "email", "password"]);
         $this->validate($request, [
             'username' => 'required| unique:users',
             'email' => 'required|email|unique:users',
