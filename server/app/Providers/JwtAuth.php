@@ -40,10 +40,10 @@ class JWTAuth
             if (is_object($decoded) && isset($decoded->id)) {
                 if ($decoded->expired >= Carbon::now()) {
                     $auth = false;
-                    $message = "autorizacion caducada";
+                    $message = "autorización caducada";
                 } else {
                     $auth = true;
-                    $message = "autorizacion aceptada";
+                    $message = "autorización aceptada";
                 }
             }
         } catch (Exception $e) {
@@ -51,7 +51,7 @@ class JWTAuth
             $message = "no autorizado";
         }
 
-        return ["auth" => $auth, "message" => "message"];
+        return ["auth" => $auth, "message" => $message];
 
     }
 }
