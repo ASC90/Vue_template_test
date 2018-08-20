@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\User;
+use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -35,7 +36,13 @@ class AuthController extends Controller
         ], $this->mensaje);
 
       // login
-        return response()->json();
+
+        if (!empty($params["hash"])) {
+            return response()->json(["message" => "aqui el token"]);
+        } else {
+            return response()->json(["message" => "aqui no el token"]);
+        }
+
     }
 
     public function register(Request $request)
