@@ -8,23 +8,22 @@ use Carbon\Carbon;
 
 class JWTAuth
 {
-    public $key;
     public function __contructor()
     {
-        $this->key = env('APP_KEY');
     }
-    public function createToken($user)
+    public static function createToken($user)
     {
+        $key = env('APP_KEY');
         $date = Carbon::now();
         if (is_object($user)) {
             $token = [
-                $id => $user['id'],
-                $email => $user['email'],
-                $username => $user['username'],
-                $expired => $date->addHour(2)
+                'id' => $user->id,
+                'email' => $user->email,
+                'username' => $user->username,
+                'expire' => $date->addHour(2)
             ];
 
-            $jwt = JWT::encode($token, $this->key, 'RS256');
+            $jwt = JWT::encode($token, $key);
 
             return $jwt;
         }

@@ -38,11 +38,21 @@ class AuthController extends Controller
 
       // login
 
-        if (!empty($params["hash"])) {
-            return response()->json(["message" => "aqui el token"]);
-        } else {
-            return response()->json(["message" => "aqui no el token"]);
+        $user = User::where('email', $params['email'])->first();
+        if ($user) {
+            if (Hash::check($params['password'], $user['password'])) {
+                if (!empty($params['hash'])) {
+                    $token = JWTAuth::createToken($user);
+                    return response()->json(['token' => $token]);
+                } else {
+                    return response()->json($user);
+                }
+            } else {
+                return response()->json(['message' => 'la contraseña es incorrecta'], 500);
+            }
         }
+
+
 
     }
 
