@@ -1,5 +1,5 @@
 <template>
-	<v-toolbar v-bind:class="{ lightNavbar: isLight, darkNavbar: !isLight }">
+	<v-toolbar v-bind:class="{ light: isLight, dark: !isLight }" class="navbar">
 		<v-toolbar-items>
         <v-btn flat to="/">Home</v-btn>
         <v-btn flat to="/about">About</v-btn>
@@ -28,22 +28,6 @@ export default class Navbar extends Vue {
 </script>
 
 <style scoped>
-/*  
-    .router-link.router-link-exact-active.router-link-active {
-        box-shadow: none;
-    }
-    .v-btn:not(.v-btn--depressed):not(.v-btn--flat) {
-        box-shadow: none;
-    }
-    .v-btn.v-btn--flat::before {
-        width: inherit;
-        height: inherit;
-        background-color: inherit;
-    }
-    .v-btn {
-        background-color: aquamarine;
-    }
-    */
 .v-btn--router {
   color: inherit;
 }
