@@ -34,3 +34,15 @@ export default class TestComponent extends Vue {}
 
 ## Add vuetify using @vue/cli:
 Run this(cmd): vue add vuetify
+
+BACKEND 
+lumen/ microframework de laravel PHP
+
+migrar la base de datos
+renombrar el fichero .ENV y configurar la base de datos.
+
+la primera vez al ejecutar lumen introducir el comando por cmd -php artisan key:generate
+
+para migrar la base de datos introducir php artisan migrate
+
+para ejecutrar el servidor php artisan serve
