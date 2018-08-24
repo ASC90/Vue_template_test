@@ -39,3 +39,15 @@
 .v-tabs__item {
     cursor: pointer;
 }
+
+.light .v-messages__message {
+    color: #a00000;
+}
+
+.dark .v-messages__message {
+    color: #ff7a7a;
+}
+
+.v-messages__message {
+    font-weight: bolder;
+}

@@ -9,19 +9,14 @@
 						<!--sign-in-->
 						<v-container>
 						<v-form v-model="valid">
-    					<v-text-field v-model="name" :rules="nameRules" :counter="10" label="Name" required></v-text-field>
-    					<v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+    					<v-text-field v-model="fields.name" :rules="hasSubmit ? nameRules : defaultRules" :counter="10" label="Name" required clearable></v-text-field>
+    					<v-text-field v-model="fields.email" :rules="hasSubmit ? emailRules : defaultRules" label="E-mail" required clearable></v-text-field>
 							<v-btn @click="signiIn()">Sign in</v-btn>
-							{{color}}
   					</v-form>
 						</v-container>
 					</v-tab-item>
 					<v-tab-item id="register">
-						<!--register
-						<v-form v-model="valid">
-    					<v-text-field v-model="name" :rules="nameRules" :counter="10" label="Name" required></v-text-field>
-    					<v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
-  					</v-form>-->
+						To do
 					</v-tab-item>
 				</v-tabs>
 			</v-flex>
@@ -40,18 +35,21 @@ import { mapState } from "vuex";
 export default class SignInRegister extends Vue {
   private color = "";
   private isLight = this.$store.state.globalIsLight;
-
-  nameRules = [
+  private valid = null;
+  private fields = {
+    name: "",
+    email: ""
+  };
+  private hasSubmit = false;
+  private defaultRules = [];
+  private nameRules = [
     v => !!v || "Name is required",
     v => v.length <= 10 || "Name must be less than 10 characters"
   ];
-  emailRules = [
+  private emailRules = [
     v => !!v || "E-mail is required",
     v => /.+@.+/.test(v) || "E-mail must be valid"
   ];
-  valid = null;
-  name = null;
-  email = null;
   created() {
     this.setColor();
   }
@@ -59,7 +57,18 @@ export default class SignInRegister extends Vue {
   onGlobalIsLightChanged(value: boolean, oldValue: boolean) {
     this.isLight = value;
     this.setColor();
-    console.log(this.isLight);
+  }
+  @Watch("fields.name")
+  onFieldsNameChanged(value, oldValue) {
+    if (value == null) {
+      this.fields.name = "";
+    }
+  }
+  @Watch("fields.email")
+  onFieldsEmailChanged(value, oldValue) {
+    if (value == null) {
+      this.fields.email = "";
+    }
   }
   setColor() {
     if (this.isLight) {
@@ -69,9 +78,11 @@ export default class SignInRegister extends Vue {
     }
   }
   signiIn() {
-    console.log(this.valid);
-    console.log(this.name);
-    console.log(this.email);
+    this.hasSubmit = true;
+    if (this.hasSubmit && this.valid) {
+      // Post
+      alert(this.fields.name + " " + this.fields.email);
+    }
   }
 }
 </script>
