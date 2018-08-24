@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import Navbar from "@/components/Project/Navbar.vue";
 import { mapState } from "vuex";
 
@@ -24,5 +24,11 @@ import { mapState } from "vuex";
 })
 export default class App extends Vue {
   isLight = true;
+  @Watch("isLight")
+  onIsLightChanged(value: boolean, oldValue: boolean) {
+    console.log(value);
+
+    //globalIsLight = this.isLight;
+  }
 }
 </script>
