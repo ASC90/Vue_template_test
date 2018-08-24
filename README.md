@@ -11,7 +11,7 @@ Then run npm i -g @vue/cli to have the cli of vue
 ## Component inside a component
 To make a component inside an other component:
 - Create file .vue extension of the new component and add this (for example):
-
+```typescript
 <template>
 </template>
 <script lang="ts">
@@ -21,6 +21,7 @@ export default class TestComponent extends Vue {}
 </script>
 <style scoped>
 </style>
+```
 
 
 - Then call the component inside the other component:

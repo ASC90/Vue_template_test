@@ -11,6 +11,7 @@
 						<v-form v-model="valid">
     					<v-text-field v-model="name" :rules="nameRules" :counter="10" label="Name" required></v-text-field>
     					<v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
+							<div>{{theme}}</div>
 							<v-btn @click="signiIn()">Sign in</v-btn>
   					</v-form>
 						</v-container>
@@ -30,13 +31,15 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import App from "@/App.vue";
 
 @Component
 export default class SignInRegister extends Vue {
   color = "lime accent-4";
   @Prop private theme!: boolean;
+
   @Watch("theme")
-  onThemeChanged(val: string, oldVal: string) {
+  public onThemeChanged(val: string, oldVal: string) {
     console.log(val);
   }
   onInput() {
@@ -59,6 +62,7 @@ export default class SignInRegister extends Vue {
   name = null;
   email = null;
   signiIn() {
+    console.log("isLight");
     console.log(this.valid);
     console.log(this.name);
     console.log(this.email);
