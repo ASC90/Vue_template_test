@@ -12,6 +12,7 @@
     					<v-text-field v-model="name" :rules="nameRules" :counter="10" label="Name" required></v-text-field>
     					<v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
 							<v-btn @click="signiIn()">Sign in</v-btn>
+							{{color}}
   					</v-form>
 						</v-container>
 					</v-tab-item>
@@ -29,23 +30,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import App from "@/App.vue";
+import { mapState } from "vuex";
 
-@Component
+@Component({
+  computed: mapState(["globalIsLight"])
+})
 export default class SignInRegister extends Vue {
-  color = "lime accent-4";
+  private color = "";
+  private isLight = this.$store.state.globalIsLight;
 
-  onInput() {
-    /*
-    console.log(this.theme);
-    if (this.theme) {
-      this.color = "black";
-    } else {
-      this.color = "lime accent-4";
-		}
-		*/
-  }
   nameRules = [
     v => !!v || "Name is required",
     v => v.length <= 10 || "Name must be less than 10 characters"
@@ -57,8 +52,23 @@ export default class SignInRegister extends Vue {
   valid = null;
   name = null;
   email = null;
+  created() {
+    this.setColor();
+  }
+  @Watch("globalIsLight")
+  onGlobalIsLightChanged(value: boolean, oldValue: boolean) {
+    this.isLight = value;
+    this.setColor();
+    console.log(this.isLight);
+  }
+  setColor() {
+    if (this.isLight) {
+      this.color = "blue-grey darken-3";
+    } else if (!this.isLight) {
+      this.color = "lime accent-4";
+    }
+  }
   signiIn() {
-    console.log("isLight");
     console.log(this.valid);
     console.log(this.name);
     console.log(this.email);

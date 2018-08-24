@@ -8,7 +8,9 @@ export default new Vuex.Store({
     globalIsLight: true,
   },
   mutations: {
-
+    changeTheme(state, value: boolean) {
+      state.globalIsLight = value;
+    },
   },
   actions: {
 

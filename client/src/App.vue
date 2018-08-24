@@ -6,7 +6,6 @@
     </div>-->
     <Navbar v-on:themeControl="isLight = !isLight"/>
     <router-view/>
-    {{globalIsLight}}
   </div>
 </template>
 
@@ -26,8 +25,8 @@ export default class App extends Vue {
   isLight = true;
   @Watch("isLight")
   onIsLightChanged(value: boolean, oldValue: boolean) {
-    console.log(value);
-
+    //console.log(value);
+    this.$store.commit("changeTheme", this.isLight);
     //globalIsLight = this.isLight;
   }
 }
