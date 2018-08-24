@@ -5,18 +5,22 @@
       <router-link to="/about">About</router-link>
     </div>-->
     <Navbar v-on:themeControl="isLight = !isLight"/>
-    <router-view theme="isLight"/>
+    <router-view/>
+    {{globalIsLight}}
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import Navbar from "@/components/Project/Navbar.vue";
+import { mapState } from "vuex";
+
 @Component({
   components: {
     Navbar
   },
-  template: require("@/style.css")
+  template: require("@/style.css"),
+  computed: mapState(["globalIsLight"])
 })
 export default class App extends Vue {
   isLight = true;
