@@ -35,7 +35,6 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class DialogInvalidFormulary extends Vue {
   @Prop() private dialog!: boolean;
   onCloseDialog() {
-    console.log(this.dialog);
     this.$emit("closeDialog");
   }
 }

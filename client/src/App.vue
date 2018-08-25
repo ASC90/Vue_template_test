@@ -25,9 +25,7 @@ export default class App extends Vue {
   isLight = true;
   @Watch("isLight")
   onIsLightChanged(value: boolean, oldValue: boolean) {
-    //console.log(value);
     this.$store.commit("changeTheme", this.isLight);
-    //globalIsLight = this.isLight;
   }
 }
 </script>

@@ -9,8 +9,8 @@
 						<!--sign-in-->
 						<v-container>
 						<v-form v-model="valid">
-    					<v-text-field v-model="fields.name" :rules="hasSubmit ? nameRules : defaultRules" :counter="10" label="Name" required clearable></v-text-field>
-    					<v-text-field v-model="fields.email" :rules="hasSubmit ? emailRules : defaultRules" label="E-mail" required clearable></v-text-field>
+    					<v-text-field v-model="fields.name" :rules="nameRules" :counter="10" label="Name" required clearable></v-text-field>
+    					<v-text-field v-model="fields.email" :rules="emailRules" label="E-mail" required clearable></v-text-field>
 							<v-btn @click="signIn()">Sign in</v-btn>
 							<DialogInvalidFormulary v-bind:dialog="dialog" v-on:closeDialog="dialog = false"/>
   					</v-form>
@@ -41,7 +41,7 @@ export default class SignInRegister extends Vue {
   private dialog = false;
   private color = "";
   private isLight = this.$store.state.globalIsLight;
-  private valid = null;
+  private valid = false;
   private fields = {
     name: "",
     email: ""
@@ -55,9 +55,11 @@ export default class SignInRegister extends Vue {
   private emailRules = [
     v => !!v || "E-mail is required",
     v => /.+@.+/.test(v) || "E-mail must be valid"
-  ];
+	];
+	constructor (service: )
   created() {
     this.setColor();
+    this.valid = false;
   }
   @Watch("globalIsLight")
   onGlobalIsLightChanged(value: boolean, oldValue: boolean) {
@@ -87,6 +89,7 @@ export default class SignInRegister extends Vue {
     this.hasSubmit = true;
     if (this.hasSubmit && this.valid) {
       // Post
+      alert("success");
     } else if (this.hasSubmit && !this.valid) {
       this.dialog = true;
     }
@@ -101,5 +104,15 @@ export default class SignInRegister extends Vue {
 }
 .v-tabs__content {
   padding-top: 6px;
+}
+
+.light .v-btn {
+  background-color: rgb(0, 45, 117);
+  color: white;
+}
+
+.dark .v-btn {
+  background-color: rgb(88, 255, 219);
+  color: black;
 }
 </style>
