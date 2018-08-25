@@ -11,7 +11,8 @@
 						<v-form v-model="valid">
     					<v-text-field v-model="fields.name" :rules="hasSubmit ? nameRules : defaultRules" :counter="10" label="Name" required clearable></v-text-field>
     					<v-text-field v-model="fields.email" :rules="hasSubmit ? emailRules : defaultRules" label="E-mail" required clearable></v-text-field>
-							<v-btn @click="signiIn()">Sign in</v-btn>
+							<v-btn @click="signIn()">Sign in</v-btn>
+							<DialogInvalidFormulary v-bind:dialog="dialog" v-on:closeDialog="dialog = false"/>
   					</v-form>
 						</v-container>
 					</v-tab-item>
@@ -26,13 +27,18 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
+import DialogInvalidFormulary from "@/components/Project/DialogInvalidFormulary.vue";
 import App from "@/App.vue";
 import { mapState } from "vuex";
 
 @Component({
-  computed: mapState(["globalIsLight"])
+  computed: mapState(["globalIsLight"]),
+  components: {
+    DialogInvalidFormulary
+  }
 })
 export default class SignInRegister extends Vue {
+  private dialog = false;
   private color = "";
   private isLight = this.$store.state.globalIsLight;
   private valid = null;
@@ -77,11 +83,12 @@ export default class SignInRegister extends Vue {
       this.color = "lime accent-4";
     }
   }
-  signiIn() {
+  signIn() {
     this.hasSubmit = true;
     if (this.hasSubmit && this.valid) {
       // Post
-      alert(this.fields.name + " " + this.fields.email);
+    } else if (this.hasSubmit && !this.valid) {
+      this.dialog = true;
     }
   }
 }

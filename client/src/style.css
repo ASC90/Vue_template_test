@@ -51,3 +51,37 @@
 .v-messages__message {
     font-weight: bolder;
 }
+
+.light .v-input {
+    color: darkslategrey;
+}
+
+.dark .v-input {
+    color: antiquewhite;
+}
+
+.dark .v-input--is-focused {
+    color: #91fff2;
+}
+
+.light .v-input--is-focused {
+    color: #0055ff;
+}
+
+.light .v-dialog {
+    color: black;
+    background-color: #dbdbdb;
+}
+
+.dark .v-dialog {
+    color: white;
+    background-color: #3a3a3a;
+}
+
+.light .v-dialog .headline {
+    background-color: #f11616;
+}
+
+.dark .v-dialog .headline {
+    background-color: #490505;
+}
